@@ -1,0 +1,20 @@
+1.分享笔记的搜索
+  海量数据搜索：lucence
+  普通做法：like模糊搜索
+
+a.发送ajax请求
+ 用户输入关键字后,按回车键发送ajax
+ 要提交请求参数:关键字
+b.服务器端处理
+ /note/search.do
+-->SearchNotesController
+ -->NoteService.search
+ -->ShareMapperDao.findLikeTitle
+ -->cn_share（like模糊查询）
+-->返回NoteResult结构的json
+c.ajax回调处理
+ 解析json数据,生成检索结果笔记列表
+ pc_part_6
+
+2.Spring 事务
+3.认证权限的控制

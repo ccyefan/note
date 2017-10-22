@@ -1,0 +1,9 @@
+=====笔记分享======
+将分享笔记信息写入cn_share表
+
+
+/note/share.do
+-->ShareNoteController
+  -->NoteService.share
+  -->ShareMapperDao.save()-->cn_share
+-->返回NoteResult结构的json

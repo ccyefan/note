@@ -1,0 +1,20 @@
+1.=========注册实现==========
+ a.客户端请求发送
+  点击注册按钮时候发
+  要提交用户名,昵称,密码
+  是否需要数据格式检查
+
+ b.服务器请求处理
+ /user/regist.do
+-->DispatcherServlet
+-->handlerMapping
+-->UserRegistController.execute
+  -->UserService.regist
+  -->UserDao.save(添加操作)
+-->返回NoteResult结构的json数据
+
+ c.客户端回调处理
+ 注册成功:弹出提示框提示下,
+         自动切换到登录页面
+ 注册失败:提示错误信息
+

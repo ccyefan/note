@@ -1,0 +1,49 @@
+=====笔记本列表显示=======
+a.Ajax发送请求
+ edit.html载入完毕，自动发送ajax
+ 要提取数据，从Cookie获取userId
+b.服务器处理
+ /notebook/loadbooks.do
+-->DispatcherServlet-->handlerMapping
+-->LoadBooksController.execute
+  -->NoteBookService.loadBooks
+  -->NoteBookDao.findByUserId-->cn_notebook
+-->返回NoteResult结构的json数据
+c.Ajax回调处理
+ 成功:获取json数据,解析内容
+=========笔记列表显示==========
+a.ajax请求发送
+ 笔记本li单击时，发送ajax
+ 提交请求数据，点击的笔记本ID
+b.服务器处理
+ 提取出笔记本包含的笔记信息
+ /note/loadnotes.do
+-->DispatcherServlet-->HandlerMapping
+-->LoadNotesController.execute
+  -->NoteService.loadNotes
+  -->NoteMapperDao.findByBookId-->cn_note
+-->返回NoteResult结构的json结果
+c.ajax回调处理
+ 解析json数据，生成笔记列表
+
+
+
+//加载笔记本列表
+$.ajax({
+  url:xxx,
+  .....
+  success:function(){
+    //添加笔记本列表li
+  }
+})
+//绑定笔记本li单击(动态绑定)
+jQeury.on(事件类型,选择器,fn)
+给jQuery对象中现有和未来与"选择器"匹配的
+元素绑定事件fn
+
+$(document).on("click","li",fn);
+$("#book_list").on("click","li",fn)
+
+
+
+

@@ -1,0 +1,25 @@
+=====================
+1.MyBatis动态SQL
+ 可以根据传入参数动态在XML中拼SQL语句
+ 使用与JSTL标签相似
+ <if test="条件">...</if>
+ <choose>
+   <when test="条件1">...</when>
+   <when test="条件2">...</when>
+   <otherwise>...</otherwise>
+ </choose>
+ <foreach></foreach>
+ <where>
+ <set>
+
+ 案例:实现对cn_note表的组合条件查询
+ select * from cn_note
+ where cn_note_title like ?
+   and cn_note_status_id = ?
+   and cn_note_create_time>=?
+   and cn_note_create_time<=?
+
+<where>or xxxxx</where>
+
+ 案例:动态更新cn_note
+

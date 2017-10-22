@@ -1,0 +1,21 @@
+====确认添加笔记本=======
+a.ajax发送请求
+ 点击"创建"按钮发送
+ 提交用户ID,笔记本名称
+b.服务器端
+/notebook/add.do
+-->AddBookController.execute
+  -->NoteBookService.add
+  -->NoteBookMapperDao.save
+  -->cn_notebook(insert操作)
+-->返回NoteResult结构的json结果
+c.ajax回调处理
+ 成功:关闭对话框;需要在列表添加一个li
+ 失败:提示失败
+
+http://localhost:8080/note
+/notebook/add.do?
+userId=524f7440-7283-4b2d-8af5-4a67570e892e
+&bookName=java
+
+

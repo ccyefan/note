@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.tarena.note.dao.BookMapperDao">
+<!-- 通过一个sql加载book,再发送一个sql加载note笔记信息 -->
+<select id="findById" 
+	parameterType="string"
+	resultMap="bookMap">
+	select * from cn_notebook
+	where cn_notebook_id=#{bookId}
+</select>
+
+<resultMap id="bookMap"
+	type="org.tarena.note.entity.Book">
+	<!-- 自动装载笔记本字段结果 -->
+	<!-- 关联属性notes加载 -->
+	<collection property="notes"
+		javaType="java.util.List" 
+		ofType="org.tarena.note.entity.Note"
+		select="findByBookId"
+		column="cn_notebook_id">
+	</collection>
+</resultMap>
+
+<select id="findByBookId"
+	parameterType="string"
+	resultType="org.tarena.note.entity.Note">
+select * from cn_note
+where cn_notebook_id=#{bookId}
+</select>
+
+<!-- 使用一个SQL提取book及相关note笔记信息 -->
+<select id="findById1" 
+	parameterType="string"
+	resultMap="bookMap1">
+select *
+from cn_notebook book 
+  left outer join cn_note note 
+  on(book.cn_notebook_id=note.cn_notebook_id)
+where book.cn_notebook_id=#{bookId}
+</select>
+
+<resultMap id="bookMap1"
+	type="org.tarena.note.entity.Book">
+	<id property="cn_notebook_id" column="cn_notebook_id"/>
+	<result property="cn_user_id" column="cn_user_id"/>
+	<result property="cn_notebook_type_id" column="cn_notebook_type_id"/>
+	<result property="cn_notebook_name" column="cn_notebook_name"/>
+	<result property="cn_notebook_desc" column="cn_notebook_desc"/>
+	<result property="cn_notebook_createtime" column="cn_notebook_createtime"/>
+	<!-- 需要将note结果装载到notes关联属性里 -->
+	<collection property="notes" 
+		javaType="java.util.List"
+		ofType="org.tarena.note.entity.Note">
+		<id property="cn_note_id" column="cn_note_id"/>
+		<result property="cn_note_status_id" column="cn_note_status_id"/>
+		<result property="cn_note_title" column="cn_note_title"/>
+		<result property="cn_note_body" column="cn_note_body"/>
+		<result property="cn_note_create_time" column="cn_note_create_time"/>
+	</collection>
+</resultMap>
+
+
+
+</mapper>

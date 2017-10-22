@@ -1,0 +1,126 @@
+Spring事务管理-->SpringAOP编程-->动态代理技术
+
+1.Spring事务控制细节
+a.控制事务可读可写
+ 默认false,可读可写,适用带有增删改操作的方法
+ readOnly=true只读适用于只有查询的操作方法
+b.控制事务回滚和不回滚
+ 默认RuntimeException回滚,其他的不回滚
+ RuntimeException:NullPointException,
+  ClassCastException,NumberFormatException
+  IndexOutofBoundException等
+ 检查异常：IOException,FileNotFoundException
+
+rollbackFor={IOException.class}
+noRollbackFor={异常类型.class}
+c.控制事务传播
+ 发生在两个方法间,两个方法都有事务控制
+ 默认类型是REQUIRED
+ propagation=Propagation.REQUIRED
+f1()-->f2()
+
+d.控制事务隔离级别 （处理事务操作并发）
+ 默认DEFAULT
+ isolation=Isolation.REPEATABLE_READ
+ 隔离级别由低到高有
+ READ_UNCOMMITED 读未提交
+ READ_COMMITED 读已提交
+ REPEATABLE_READ 可重复读
+ SERIALIZABLE 序列化操作
+
+ 级别越低并发处理能力越高,但安全性越差
+ 一般使用采用默认折中策略，遇到不安全因素
+需要编程采用锁机制控制。
+
+//读id=1记录
+//做操作
+//读id=1记录
+
+
+//对id=1更新
+=========AOP==========
+可以为某一批组件方法动态添加新功能,
+在不修改原有代码情况下追加。
+
+a.当调用每个service方法之前，都追加一条信息
+
+
+within(组件类型)
+within(org.tarena.note.service..*)
+
+b.AOP概念
+
+Aspect Oriented Programming
+面向方面/切面编程
+
+可以将共通重复利用的逻辑，单独写成一个
+组件，然后通过aop配置动态切入到原来
+目标组件方法中。
+
+OOP/AOP:AOP是OOP为基础，为了使用通用业务
+逻辑与普通逻辑隔离。将业务进行解耦。
+
+1)切面 Aspect 
+  (把谁切进去)
+  封装了共通业务的组件,可以动态切入到
+其他目标组件方法
+2)切入点Pointcut
+  (往哪切入)
+  用于指定目标组件及其方法。
+  在Spring中采用一个表达式定义。
+===方法限定表达式===
+execution(修饰符? 返回类型 方法名(参数列表) 抛出异常?)
+//匹配load开始的方法
+execution(* load*(..))
+//匹配NoteService组件的load开始的方法
+execution(* org.service.NoteService.load*(..))
+//匹配NoteService组件所有方法
+execution(* org.service.NoteService.*(..))
+//匹配org.service包下所有类所有方法
+execution(* org.service.*.*(..))
+//匹配org.service包及子包中所有类所有方法
+execution(* org.service..*.*(..))
+
+=====类型限定表达式======
+within(类型)
+
+//匹配NoteService组件所有方法
+within(org.service.NoteService)
+//匹配org.service包下所有类所有方法
+within(org.service.*)
+//匹配org.service包及子包下所有类所有方法
+within(org.service..*)
+
+=====名称限定表达式=========
+bean(id名称)
+//匹配id=userService的bean组件对象
+bean(userService)
+//匹配id名字以Dao为结尾的组件对象
+bean(*Dao)
+
+
+3)通知Advice
+  (啥时候切入)
+ 用于指定切面组件与目标组件作用的时机。
+ Spring提供以下几种通知类型
+ 
+ 环绕通知=前置+后置 @Around
+
+try{
+ //前置通知--》切入方面组件功能@Before
+ //执行目标组件方法
+ //后置通知@AfterReturning
+}catch(){@AfterThrowing
+ //异常通知--》切入方面组件功能
+}finally{
+ //最终通知@After
+}
+
+c.通过注解方式实现前面案例功能
+
+
+
+
+
+
+

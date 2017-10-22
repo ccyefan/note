@@ -1,0 +1,8 @@
+=====确认创建笔记=====
+
+/note/add.do
+-->AddNoteController.execute
+  -->NoteService.add
+  -->NoteMapperDao.save
+  -->cn_note(insert操作)
+-->返回NoteResult结构的json数据
