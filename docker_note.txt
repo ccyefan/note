@@ -22,3 +22,9 @@ docker history nginx:v2
 docker run --name web2 -d -p 81:80 nginx:v2  
 docker rm -f web2
 
+Dockerfile
+FROM nginx
+RUN echo '<h1>Hello,Docker Nginx!</h1>' > /usr/share/nginx/html/index.html
+
+注意打包路径和内容 -t 镜像名
+docker build -t nginx:v3 .
