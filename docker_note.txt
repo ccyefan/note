@@ -14,11 +14,11 @@ echo '<h1>Hello,Nginx!!!!' > /usr/share/nginx/html/index.html
 
 docker diff webserver
 
-docker commit --author "Alex <ccyefan@hotmail.com>" --message "ĞŞ¸ÄÊ×Ò³" webserver nginx:v2
+docker commit --author "Alex <ccyefan@hotmail.com>" --message "ä¿®æ”¹é¦–é¡µ" webserver nginx:v2
 docker image nginx
 
 docker history nginx:v2
-´´½¨Æô¶¯ÈİÆ÷£¬Í£Ö¹É¾³ıÈİÆ÷
+åˆ›å»ºå¯åŠ¨å®¹å™¨ï¼Œåœæ­¢åˆ é™¤å®¹å™¨
 docker run --name web2 -d -p 81:80 nginx:v2  
 docker rm -f web2
 
@@ -26,5 +26,12 @@ Dockerfile
 FROM nginx
 RUN echo '<h1>Hello,Docker Nginx!</h1>' > /usr/share/nginx/html/index.html
 
-×¢Òâ´ò°üÂ·¾¶ºÍÄÚÈİ -t ¾µÏñÃû
+æ³¨æ„æ‰“åŒ…è·¯å¾„å’Œå†…å®¹ -t é•œåƒå
 docker build -t nginx:v3 .
+
+docker-machine create -d virtualbox \
+  --engine-env HTTP_PROXY=http://proxy.cmcc:8080 \
+  --engine-env HTTPS_PROXY=https://proxy.cmcc:8080 \
+  --engine-env NO_PROXY=proxy.cmcc \
+  --engine-registry-mirror=https://hdgt0e4v.mirror.aliyuncs.com\
+  default
