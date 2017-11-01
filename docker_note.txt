@@ -41,3 +41,5 @@ war包无法自解压
 copy目录可以,demo/demo/.....
 拷贝tomcat中的class文件
 COPY COPY ./demo /usr/local/tomcat/webapps
+
+SBL的原因，无法云部署
