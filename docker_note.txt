@@ -1,3 +1,11 @@
+dockerToobox 代理 和 加速器 :
+docker-machine create -d virtualbox \
+  --engine-env HTTP_PROXY=http://proxy.cmcc:8080 \
+  --engine-env HTTPS_PROXY=https://proxy.cmcc:8080 \
+  --engine-env NO_PROXY=proxy.cmcc \
+  --engine-registry-mirror=https://hdgt0e4v.mirror.aliyuncs.com\
+  default
+
 docker pull ubuntu:14.04
 docker images
 docker ps -a
@@ -29,9 +37,3 @@ RUN echo '<h1>Hello,Docker Nginx!</h1>' > /usr/share/nginx/html/index.html
 注意打包路径和内容 -t 镜像名
 docker build -t nginx:v3 .
 
-docker-machine create -d virtualbox \
-  --engine-env HTTP_PROXY=http://proxy.cmcc:8080 \
-  --engine-env HTTPS_PROXY=https://proxy.cmcc:8080 \
-  --engine-env NO_PROXY=proxy.cmcc \
-  --engine-registry-mirror=https://hdgt0e4v.mirror.aliyuncs.com\
-  default
