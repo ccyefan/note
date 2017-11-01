@@ -37,3 +37,6 @@ RUN echo '<h1>Hello,Docker Nginx!</h1>' > /usr/share/nginx/html/index.html
 注意打包路径和内容 -t 镜像名
 docker build -t nginx:v3 .
 
+war包无法自解压
+copy目录可以,demo/demo/.....
+COPY COPY ./demo /usr/local/tomcat/webapps
