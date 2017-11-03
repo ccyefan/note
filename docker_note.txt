@@ -43,3 +43,5 @@ copy目录可以,demo/demo/.....
 COPY COPY ./demo /usr/local/tomcat/webapps
 
 SBL的原因，无法云部署
+
+SBL端口问题，无法宿主访问
