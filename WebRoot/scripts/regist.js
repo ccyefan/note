@@ -36,7 +36,7 @@ $(function(){
   	//没问题发送ajax请求
   	if(ok){
 	  	$.ajax({
-	  		url:"http://localhost:8080/note/user/regist.do",
+	  		url:"user/regist.do",
 	  		type:"post",
 	  		data:{"name":name,
 	  			"password":pwd,

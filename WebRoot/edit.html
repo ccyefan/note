@@ -94,7 +94,7 @@
         	var noteId = $note_li.data("noteId");
         	//发送ajax
         	$.ajax({
-        	    url:"http://localhost:8080/note/note/share.do",
+        	    url:"note/share.do",
         	    type:"post",
         	    data:{"noteId":noteId},
         	    dataType:"json",

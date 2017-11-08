@@ -5,7 +5,7 @@ function loadnotes(){
   	//发送ajax加载笔记列表
   	var bookId = $(this).data("bookId");
   	$.ajax({
-  	  url:"http://localhost:8080/note/note/loadnotes.do",
+  	  url:"note/loadnotes.do",
   	  type:"post",
   	  data:{"bookId":bookId},
   	  dataType:"json",
@@ -63,7 +63,7 @@ function sureAddNote(){
 	//TODO参数格式检查
 	//发送ajax
 	$.ajax({
-	  url:"http://localhost:8080/note/note/add.do",
+	  url:"note/add.do",
 	  data:{"userId":userId,"bookId":bookId,"noteTitle":noteTitle},
 	  dataType:"json",
 	  type:"post",
@@ -107,7 +107,7 @@ function loadNote(){
 	var noteId = $(this).data("noteId");
 	//发送ajax请求
 	$.ajax({
-	  url:"http://localhost:8080/note/note/load.do",
+	  url:"note/load.do",
 	  type:"post",
 	  data:{"noteId":noteId},
 	  dataType:"json",
@@ -139,7 +139,7 @@ function saveNote(){
 	//TODO格式检查
 	//检查通过,发送ajax
 	$.ajax({
-		url:"http://localhost:8080/note/note/update.do",
+		url:"note/update.do",
 		type:"post",
 		data:{"noteId":noteId,"noteTitle":noteTitle,"noteBody":noteBody},
 		dataType:"json",
@@ -175,7 +175,7 @@ function sureRemoveNote(){
 	var noteId = $note_li.data("noteId");
 	//发送ajax请求
 	$.ajax({
-		url:"http://localhost:8080/note/note/remove.do",
+		url:"note/remove.do",
 		type:"post",
 		data:{"noteId":noteId},
 		dataType:"json",
@@ -204,7 +204,7 @@ function searchNote(){
 	var page = $("#page").val();
 	//发送ajax请求
 	$.ajax({
-	  url:"http://localhost:8080/note/note/search.do",
+	  url:"note/search.do",
 	  type:"post",
 	  data:{"title":keyword,"page":page},
 	  dataType:"json",

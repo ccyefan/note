@@ -21,7 +21,7 @@ $(function(){
   	 //发送Ajax请求
   if(ok){
   	 $.ajax({
-  	   url:"http://localhost:8080/note/user/login.do",
+  	   url:"user/login.do",
   	   type:"post",
   	   data:{"name":name,
   	   		"password":password},

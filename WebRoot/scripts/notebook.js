@@ -2,7 +2,7 @@
 function getbooklist(){
     //发送ajax
     $.ajax({
-      url:"http://localhost:8080/note/notebook/loadbooks.do",
+      url:"notebook/loadbooks.do",
       type:"post",
       data:{"userId":userId},
       dataType:"json",
@@ -52,7 +52,7 @@ function sureAddBook(){
    //TODO笔记本名称格式检查
    //发送ajax
    $.ajax({
-     url:"http://localhost:8080/note/notebook/add.do",
+     url:"notebook/add.do",
      type:"post",
      data:{"userId":userId,"bookName":bookName},
      dataType:"json",
