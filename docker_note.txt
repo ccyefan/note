@@ -1,0 +1,47 @@
+dockerToobox 代理 和 加速器 :
+docker-machine create -d virtualbox \
+  --engine-env HTTP_PROXY=http://proxy.cmcc:8080 \
+  --engine-env HTTPS_PROXY=https://proxy.cmcc:8080 \
+  --engine-env NO_PROXY=proxy.cmcc \
+  --engine-registry-mirror=https://hdgt0e4v.mirror.aliyuncs.com\
+  default
+
+docker pull ubuntu:14.04
+docker images
+docker ps -a
+docker run ubuntu:14.04
+docker run -it --rm  ubuntu:14.04 bash
+exit
+cat /etc/os-release
+docker ps 
+docker ps -a
+
+docker run --name webserver -d -p 80:80 nginx
+docker exec -it webserver bash
+echo '<h1>Hello,Nginx!!!!' > /usr/share/nginx/html/index.html
+
+docker diff webserver
+
+docker commit --author "Alex <ccyefan@hotmail.com>" --message "修改首页" webserver nginx:v2
+docker image nginx
+
+docker history nginx:v2
+创建启动容器，停止删除容器
+docker run --name web2 -d -p 81:80 nginx:v2  
+docker rm -f web2
+
+Dockerfile
+FROM nginx
+RUN echo '<h1>Hello,Docker Nginx!</h1>' > /usr/share/nginx/html/index.html
+
+注意打包路径和内容 -t 镜像名
+docker build -t nginx:v3 .
+
+war包无法自解压
+copy目录可以,demo/demo/.....
+拷贝tomcat中的class文件
+COPY COPY ./demo /usr/local/tomcat/webapps
+
+SBL的原因，无法云部署
+
+SBL端口问题，无法宿主访问
