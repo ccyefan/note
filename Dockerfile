@@ -1,2 +1,2 @@
-FROM nginx
-RUN echo '<h1>Hello,Docker</h1>' > /usr/share/nginx/html/index.html
+FROM tomcat:8.0
+COPY ./WebRoot /usr/local/tomcat/webapps/note
