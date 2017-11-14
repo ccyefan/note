@@ -64,3 +64,9 @@ COPY ./ /usr/local/tomcat/webapps
 docker build -t note .
 启动 web工程容器
 docker run -d --name note --link db:db -p 8080:8080 note
+
+
+cloudnote 上线   使用git 来做   
+1.mysql docker 版本：本地可以，阿里云不行 --link 容器互联
+
+2.mysql 服务版本
