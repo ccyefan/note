@@ -16,17 +16,13 @@
 	class="org.apache.commons.dbcp.BasicDataSource">
 	<property name="username" value="root">
 	</property>
-	<property name="password" value="mysecretpassword">
+	<property name="password" value="my-secret-pw">
 	</property>
 	<property name="driverClassName" 
 		value="com.mysql.jdbc.Driver">
 	</property>
 	<property name="url"
-<<<<<<< HEAD
-		value="jdbc:mysql://db:3306/cloud_note?useUnicode=true&amp;characterEncoding=utf8">
-=======
-		value="jdbc:mysql://172.18.2.3:3306/cloud_note?useUnicode=true&amp;characterEncoding=utf8">
->>>>>>> origin/master
+		value="jdbc:mysql://mysql_mysql_1:3306/cloud_note?useUnicode=true&amp;characterEncoding=utf8">
 	</property>
 </bean>
 
