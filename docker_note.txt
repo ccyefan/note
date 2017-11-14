@@ -45,3 +45,22 @@ COPY COPY ./demo /usr/local/tomcat/webapps
 SBL的原因，无法云部署
 
 SBL端口问题，无法宿主访问
+
+云笔记 mysql docker 本地 镜像运行 :
+启动mysql
+docker run --name db -e MYSQL_ROOT_PASSWORD=mysecretpassword -d mysql
+拷贝数据文件到容器
+docker cp ./cloud_note.sql db:/
+登陆数据库：
+mysql -uroot -pmysecretpassword
+导入数据：
+mysql> source /cloud_note.sql
+docker tomcat 镜像运行：
+war , github 部署 。 步骤：上传，容器服务，镜像，创建镜像，构建，部署。成功
+Dockerfile
+FROM tomcat:8.0
+COPY ./ /usr/local/tomcat/webapps
+构建note镜像
+docker build -t note .
+启动 web工程容器
+docker run -d --name note --link db:db -p 8080:8080 note
