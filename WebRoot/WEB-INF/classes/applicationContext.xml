@@ -22,7 +22,11 @@
 		value="com.mysql.jdbc.Driver">
 	</property>
 	<property name="url"
+<<<<<<< HEAD
 		value="jdbc:mysql://db:3306/cloud_note?useUnicode=true&amp;characterEncoding=utf8">
+=======
+		value="jdbc:mysql://172.18.2.3:3306/cloud_note?useUnicode=true&amp;characterEncoding=utf8">
+>>>>>>> origin/master
 	</property>
 </bean>
 
